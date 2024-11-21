@@ -26,6 +26,7 @@ double SomeSubscriber::getYaw(const double& x, const double& y, const double& z,
 
 void SomeSubscriber::poseCallback(const geometry_msgs::msg::Pose::SharedPtr msg){
     double yaw = getYaw(msg->orientation.x, msg->orientation.y, msg->orientation.z, msg->orientation.w);
+    RCLCPP_INFO(this->get_logger(), "HEADING: %f radians", yaw);
     if(std::fabs(yaw) > M_PI/2){
         auto message = std_msgs::msg::String();
         message.data = "RURA MUSI JEBAC";
