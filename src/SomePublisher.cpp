@@ -40,7 +40,7 @@ void randomizePose(geometry_msgs::msg::Pose& pose)
 
 SomePublisher::SomePublisher() : Node("some_publisher")
 {
-    publisher_ = this->create_publisher<std_msgs::msg::String>("/myPose", 20);
+    publisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/myPose", 20);
     timer_ = this->create_wall_timer(500ms, std::bind(&SomePublisher::callback_position, this)); 
     
 }
@@ -56,7 +56,7 @@ void SomePublisher::callback_position()
     std::string message = "Publish point: " + message_position + message_orientation; 
     RCLCPP_INFO(this->get_logger(), message.c_str());
     wiadomosc.data = "Pozycja i Orientacja"; 
-    publisher_ -> publish(wiadomosc);
+    publisher_ -> publish(pose);
 };
 
 int main(int argc, char **argv)

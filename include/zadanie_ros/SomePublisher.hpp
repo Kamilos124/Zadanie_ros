@@ -14,7 +14,7 @@ class SomePublisher : public rclcpp::Node
     private:
         void callback_position();
         rclcpp::TimerBase::SharedPtr timer_;
-        rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+        rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr publisher_;
     public:
         SomePublisher();
 };
