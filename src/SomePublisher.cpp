@@ -48,14 +48,12 @@ SomePublisher::SomePublisher() : Node("some_publisher")
 
 void SomePublisher::callback_position() 
 {
-    auto wiadomosc = std_msgs::msg::String();
     auto pose = geometry_msgs::msg::Pose();
     randomizePose(pose);
     std::string message_position = std::to_string(pose.position.x) + ", " + std::to_string(pose.position.y) + ", " + std::to_string(pose.position.z) + ", ";
     std::string message_orientation = std::to_string(pose.orientation.w) + ", " + std::to_string(pose.orientation.x) + ", " + std::to_string(pose.orientation.y) + ", " + std::to_string(pose.orientation.z);
     std::string message = "Publish point: " + message_position + message_orientation; 
     RCLCPP_INFO(this->get_logger(), message.c_str());
-    wiadomosc.data = "Pozycja i Orientacja"; 
     publisher_ -> publish(pose);
 };
 
